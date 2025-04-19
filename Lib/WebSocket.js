@@ -11,10 +11,10 @@ function empty() {}
 
 export class websocket {
 	constructor() {
-		this.on_message = empty;
-		this.on_open = empty;
-		this.on_close = empty;
-		this.uri = null;
+		this._on_message = empty;
+		this._on_open = empty;
+		this._on_close = empty;
+		this._uri = null;
 	}
 
 	uri(uri) { this.uri = uri; return this; }
