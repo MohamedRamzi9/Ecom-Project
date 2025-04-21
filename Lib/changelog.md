@@ -2,11 +2,13 @@
 - added `LocalStorage` class in `Storage.js` file
 	- added `set, get_json, get_string, get_number, get_boolean, remove, clear` methods
 - removed `set_local_storage, get_local_storage, remove_local_storage` functions from `Storage.js` file
-
+- removed `websocket` function from `WebSocket.js` file
 
 # 19-04-2025 :
 - added `get_children_count` method to `element` class
 - added `username_error, password_error, clear_error` methods to `login_component` class
+- added `WebSocket` class in `WebSocket.js` file
+	- added `connect, uri, on_message, on_open, on_close` methods
 
 # 18-04-2025 :
 - added `get_child_by_index, placeholder` method to `element` class
