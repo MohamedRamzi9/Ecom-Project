@@ -1,3 +1,7 @@
+# 22-04-2025 :
+- added `URL.js` file
+	- added `to_string, to_json` functions
+
 # 21-04-2025 :
 - added `LocalStorage` class in `Storage.js` file
 	- added `set, get_json, get_string, get_number, get_boolean, remove, clear` methods
