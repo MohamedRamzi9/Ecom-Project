@@ -72,6 +72,16 @@ export class element {
 		return this._elem.name;
 	}
 
+	// sets the type of the element
+	type(type) {
+		this._elem.type = type;
+		return this;
+	}
+	// gets the type of the element
+	get_type() {
+		return this._elem.type;
+	}
+
 	// clears the inner html of the element
 	clear() {
 		this._elem.innerHTML = '';

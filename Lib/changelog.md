@@ -1,3 +1,6 @@
+# 30-04-2025 :
+- added `type, get_type` method to `element` class
+
 # 22-04-2025 :
 - added `URL.js` file
 	- added `to_string, to_json` functions
