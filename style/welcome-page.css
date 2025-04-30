@@ -1,7 +1,22 @@
 
 welcome-page {
 	display: flex;
-	width: 100%;
+	width: fit-content;
+	height: fit-content;
 	flex-direction: row;
+	margin: 0 auto;
+	margin-top: 50px;
+	gap: 20px;
+
+	button {
+		user-select: none;
+		cursor: pointer;
+		background-color: cornflowerblue;
+		border-radius: 20px;
+		border: none;
+		font-size: large;
+		color: white;
+		padding: 10px 20px;
+	}
 }
 
