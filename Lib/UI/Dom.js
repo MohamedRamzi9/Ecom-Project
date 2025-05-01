@@ -82,6 +82,35 @@ export class element {
 		return this._elem.type;
 	}
 
+	// sets the given attribute of the element
+	attr(name, value) {
+		this._elem.setAttribute(name, value);
+		return this;
+	}
+	// gets the given attribute of the element
+	get_attr(name) {
+		return this._elem.getAttribute(name);
+	}
+	// sets the selected attribute of the element
+	selected(selected) {
+		this._elem.selected = selected;
+		return this;
+	}
+	// gets the selected attribute of the element
+	get_selected() {
+		return this._elem.selected;
+	}
+
+	// sets the checked attribute of the element
+	checked(checked) {
+		this._elem.checked = checked;
+		return this;
+	}
+	// gets the checked attribute of the element
+	get_checked() {
+		return this._elem.checked;
+	}
+
 	// clears the inner html of the element
 	clear() {
 		this._elem.innerHTML = '';
@@ -100,9 +129,35 @@ export class element {
 		return this;
 	}
 
+	// sets the first child of the element
+	first_child(child) {
+		this._elem.firstChild = child.get_elem();
+		return this;
+	}
+	// gets the first child of the element
+	get_first_child() {
+		return to_element(this._elem.firstChild);
+	}
+	// sets the last child of the element
+	last_child(child) {
+		this._elem.lastChild = child.get_elem();
+		return this;
+	}
+	// gets the last child of the element
+	get_last_child() {
+		return to_element(this._elem.lastChild);
+	}
+
 	// gets a child by index
-	get_child_by_index(index) {
+	get_child_at(index) {
+		let children_count = this.get_children_count();
+		if (index < 0) index = children_count + index; 
 		return to_element(this._elem.children[index]);
+	}
+
+	// gets all children of the element
+	get_children() {
+		return [...this._elem.children].map(elem => to_element(elem));
 	}
 
 	// appends a child element to the element
@@ -130,7 +185,7 @@ export class element {
 		return this;
 	}
 	// rmeoves a child element by index
-	remove_child_by_index(index) {
+	remove_child_at(index) {
 		this._elem.removeChild(this._elem.children[index]);
 		return this;
 	}
@@ -140,6 +195,23 @@ export class element {
 		this._elem.removeChild(child.get_elem());
 		return this;
 	}
+
+	// insert a child element at a specific index
+	insert_child_at(index, child) {
+		this._elem.insertBefore(child.get_elem(), this.get_child_at(index).get_elem());
+		return this;
+	}
+	// insert a child element before another child element
+	insert_child_before(child, beforeChild) {
+		this._elem.insertBefore(child.get_elem(), beforeChild.get_elem());
+		return this;
+	}
+	// insert a child element after another child element
+	insert_child_after(child, afterChild) {
+		this._elem.insertBefore(child.get_elem(), afterChild.get_elem().nextSibling);
+		return this;
+	}
+
 	// get the number of children of the element
 	get_children_count() {
 		return this._elem.children.length;
@@ -241,6 +313,9 @@ export let div = () => elem('div');
 export let button = () => elem('button');
 export let input = () => elem('input');
 export let style = () => elem('style');
+export let label = () => elem('label');
+export let select = () => elem('select');
+export let option = () => elem('option');
 
 // a helper function to convert an html element to an element object
 // equivilant to : new element().elem(elem)

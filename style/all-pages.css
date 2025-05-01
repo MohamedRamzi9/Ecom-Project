@@ -3,4 +3,5 @@ body {
 	box-sizing: border-box;
 	width: 100vw;
 	background-color: azure;
+	margin: 0;
 }

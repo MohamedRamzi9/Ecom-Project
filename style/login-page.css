@@ -1,6 +1,6 @@
 
 
-login-page {
+login-page, signin-page {
 	display: flex;
 	width: fit-content;
 	height: 100%;
@@ -12,13 +12,14 @@ login-page {
 	login-component {
 		display: flex;
 		flex-direction: column;
-		background-color: wheat;
+		background-color: cornflowerblue;
 		border-radius: 20px;
 		padding: 20px;
 		gap: 20px;
 		width: fit-content;
 		height: fit-content;
 		font-size: 20px;
+		color: white;
 
 	
 		username-part, password-part {
@@ -29,8 +30,24 @@ login-page {
 			input {
 				width: 250px;
 				font-size: large;
-				/* border: none; */
+				border: 1px solid white;
+				outline: none;
 				background-color: transparent;	
+			}
+		}
+
+		role-list {
+			display: flex;
+			flex-direction: row;
+			justify-content:space-around;
+
+			radio-part {
+				display: flex;
+				flex-direction: row;
+				gap: 5px;
+				cursor: pointer;
+				user-select: none;
+				
 			}
 		}
 

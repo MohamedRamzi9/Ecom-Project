@@ -24,14 +24,14 @@ export class login_component {
 
 	// sets the label and placeholder of the username fields
 	username(label, input="") {
-		this.username_part.get_child_by_index(0).text(label);
-		this.username_part.get_child_by_index(1).placeholder(input);
+		this.username_part.get_child_at(0).text(label);
+		this.username_part.get_child_at(1).placeholder(input);
 		return this;
 	}
 	// sets the label and placeholder of the password fields
 	password(label, input="") {
-		this.password_part.get_child_by_index(0).text(label);
-		this.password_part.get_child_by_index(1).placeholder(input);
+		this.password_part.get_child_at(0).text(label);
+		this.password_part.get_child_at(1).placeholder(input);
 		return this;
 	}
 	// sets the label of the submit button
@@ -41,11 +41,11 @@ export class login_component {
 	}
 	// retuns the value the username input field
 	get_username() {
-		return this.username_part.get_child_by_index(1).get_value();
+		return this.username_part.get_child_at(1).get_value();
 	}
 	// returns the value of the password input field
 	get_password() {
-		return this.password_part.get_child_by_index(1).get_value();
+		return this.password_part.get_child_at(1).get_value();
 	}
 	// sets the click event of the submit button
 	submit_event(func) {
@@ -56,7 +56,7 @@ export class login_component {
 	// sets the error message of the username field
 	username_error(text) {
 		if (this.username_part.get_children_count() > 2) 
-			this.username_part.get_child_by_index(2).text(text);
+			this.username_part.get_child_at(2).text(text);
 		else 
 			this.username_part.add_child(dom.elem('username-error').text(text));
 		return this;
@@ -64,7 +64,7 @@ export class login_component {
 	// sets the error message of the password field
 	password_error(text) {
 		if (this.password_part.get_children_count() > 2) 
-			this.password_part.get_child_by_index(2).text(text);
+			this.password_part.get_child_at(2).text(text);
 		else 
 			this.password_part.add_child(dom.elem('password-error').text(text));
 		return this;
@@ -72,9 +72,9 @@ export class login_component {
 	// clears the errors
 	clear_errors() {
 		if (this.username_part.get_children_count() > 2) 
-			this.username_part.get_child_by_index(2).clear();
+			this.username_part.get_child_at(2).clear();
 		if (this.password_part.get_children_count() > 2) 
-			this.password_part.get_child_by_index(2).clear();
+			this.password_part.get_child_at(2).clear();
 		return this;
 	}
 

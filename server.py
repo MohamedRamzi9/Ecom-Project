@@ -1,7 +1,33 @@
 import websocket_server
+import json
+
+# Constants
+LOGIN = 0
+SUCCESS = 1
+
+client_users = [("client", "password", "user"),]
+
+json_responses = []
+def add_json_response(response):
+	json_responses.append(response)
+def get_json_responses():
+	return json.dumps(json_responses)
 
 def on_message(client, server, message):
-	pass
+	message = json.loads(message)	
+	print(f"Request {message}")
+	request = message['request']
+
+	if request == LOGIN:
+		username = message['username']
+		password = message['password']
+		role = message['role']
+		if (username, password, role) in client_users:
+			add_json_response({"response": SUCCESS})
+	
+	server.send_message(client, get_json_responses())
+	json_responses.clear()
+
 
 def on_connect(client, server):
 	print("Client connected")
