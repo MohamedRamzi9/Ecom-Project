@@ -1,4 +1,14 @@
-# -01-05-2025 :
+
+# 05-05-2025 :
+- added `ws` attribute and `send` method to `WebSocket` class and changed `connect` method to return `this` instead of `ws`
+
+# 04-05-2025 :
+- added `src, get_src, background_image, get_background_image` method to `element` class
+
+# 03-05-2025 :
+- added `path, url, goto_path, goto_url, push_state, set_state, get_state, format_path, on_pop_state` functions to `URL` class
+
+# 01-05-2025 :
 - added `insert_child_at, insert_child_before, insert_child_after, selected, get_selected, first_child, get_first_child, last_child, get_last_child, checked, get_checked` methods to `element` class
 - added `label` function to `Dom.js` file
 - added `select, option` function to `Dom.js` file

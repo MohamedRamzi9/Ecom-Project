@@ -1,9 +1,12 @@
 import websocket_server
 import json
 
+from data import get_products
+
 # Constants
 LOGIN = 0
 SUCCESS = 1
+PRODUCTS = 2
 
 client_users = [("client", "password", "user"),]
 
@@ -12,6 +15,12 @@ def add_json_response(response):
 	json_responses.append(response)
 def get_json_responses():
 	return json.dumps(json_responses)
+def to_json(obj):
+	if isinstance(obj, list):
+		return [to_json(item) for item in obj]
+	else:
+		return obj.to_json() 
+
 
 def on_message(client, server, message):
 	message = json.loads(message)	
@@ -24,8 +33,14 @@ def on_message(client, server, message):
 		role = message['role']
 		if (username, password, role) in client_users:
 			add_json_response({"response": SUCCESS})
+
+	elif request == PRODUCTS:
+		json_data = to_json(get_products())
+		add_json_response({"response": PRODUCTS, "products": json_data})
 	
-	server.send_message(client, get_json_responses())
+	print(f"Response {json_responses}")
+	json_response = get_json_responses()
+	server.send_message(client, json_response)
 	json_responses.clear()
 
 
