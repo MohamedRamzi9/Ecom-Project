@@ -14,9 +14,8 @@ export class WebSocket {
 
 		WebSocket.ws = new websocket().uri('localhost:9001')
 		.on_message((event) => WebSocket.on_message(JSON.parse(event.data)))
-		.on_open(() => {
-			console.log('WebSocket connection opened');
-		}).on_close(() => {
+		.on_open(WebSocket.on_open)
+		.on_close(() => {
 			console.log('WebSocket connection closed');
 		}).connect();
 	}
@@ -37,5 +36,29 @@ export class WebSocket {
 			}
 		}
 	}
+
+	static on_open() {
+		console.log('WebSocket connection opened');
+	
+		WebSocket.send({request: constants.CATEGORIES});
+
+		waitForCondition(() => WebSocket.Home.is_ready(), () => {
+			console.log("Home is ready");
+			WebSocket.Home.search("", "All");
+		});
+
+
+	}
 }
 
+function waitForCondition(condition_func, result_func, interval = 100) {
+    return new Promise(resolve => {
+        const check = setInterval(() => {
+            if (condition_func()) {
+                clearInterval(check);
+                result_func();
+                resolve();
+            }
+        }, interval);
+    });
+}

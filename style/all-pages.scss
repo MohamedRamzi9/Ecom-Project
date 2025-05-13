@@ -1,0 +1,9 @@
+@import "mixins";
+
+body {
+	box-sizing: border-box;
+	width: 100vw;
+	background-color: $background-color;
+	margin: 0;
+	font-family: halvetica, sans-serif;
+}

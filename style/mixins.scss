@@ -1,0 +1,54 @@
+
+@import "variables";
+
+@mixin flex($direction: row) {
+	display: flex;
+	flex-direction: $direction;
+}
+
+
+@mixin font($size: 16px) {
+	font-family: $font-family;
+	font-size: $size;
+}
+
+@mixin inputish {
+	@include font(large);
+	border-radius: $border-radius;
+	padding: $padding-vertical $padding-horizontal;
+	width: fit-content;
+	cursor: pointer;
+	user-select: none;
+	border: none;
+}
+
+@mixin white-button {
+	@include inputish;
+	background-color: white;
+	color: black;
+}
+
+@mixin primary-button {
+	@include inputish;
+	background-color: $primary-color;
+	color: white;
+}
+
+@mixin select {
+	appearance: none;
+	@include inputish;
+}
+
+@mixin input {
+	@include font(large);
+	outline: none;
+	border: none;
+	border-radius: $border-radius;
+	padding: $padding-vertical $padding-horizontal;
+}
+
+@mixin image-cover {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}

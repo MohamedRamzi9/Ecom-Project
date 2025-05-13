@@ -1,7 +1,7 @@
 import websocket_server
 import json
 
-from data import get_products
+import data
 
 # Constants
 LOGIN = 0
@@ -35,7 +35,14 @@ def on_message(client, server, message):
 			add_json_response({"response": SUCCESS})
 
 	elif request == PRODUCTS:
-		json_data = to_json(get_products())
+		category = message['category']
+		name = message['name']
+		filter = data.Filter()
+		if name != "":
+			filter.set_name(name)
+		if category != "All":
+			filter.set_category(category)
+		json_data = to_json(data.get_products(filter))
 		add_json_response({"response": PRODUCTS, "products": json_data})
 	
 	print(f"Response {json_responses}")

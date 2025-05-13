@@ -1,4 +1,4 @@
-import * as dom from './Dom.js';
+import * as dom from '../Dom.js';
 
 
 // a simple login form that has a username and password field with a submit button

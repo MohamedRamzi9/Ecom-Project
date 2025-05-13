@@ -1,0 +1,71 @@
+$padding-horizontal: 20px;
+
+@mixin font ($size: 16px) {
+	font-family: Halvetica, sans-serif;
+	font-size: $size;
+}
+@mixin button {
+	@include font;
+	border-radius: 20px;
+	padding: 10px $padding-horizontal;
+	width: max(100%, calc(fit-content));
+	cursor: pointer;
+	user-select: none;
+}
+
+@mixin item ($options: ()) {
+	$background-color: map-get($options, background-color) or lightblue;
+	item {
+		display: flex;
+		@include button;
+		background-color: $background-color;
+		transition: background-color .3s ease;
+		&:hover {
+			transition: 0s;
+			background-color: map-get($options, hover) or darken($background-color, 30%);
+		}
+	}
+}
+
+body {
+	all: unset;
+	padding: 0;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+
+dropdown-component {
+	gap: 20px;
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+
+	header-part {
+		all: unset;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		$background-color: lightblue;
+		@include item((background-color: $background-color));
+	
+	}
+	menu-part {
+		display: flex;
+		flex-direction: column;
+		width: max-content;
+		gap: 10px;
+		
+		transition: height .3s ease;
+		overflow: hidden;
+
+		$background-color: lightgreen;
+		@include item((background-color: $background-color));
+
+		.selected {
+			background-color: darken($background-color, 30%);
+		}
+	}
+}
+

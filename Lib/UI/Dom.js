@@ -92,16 +92,6 @@ export class element {
 		return this._elem.src;
 	}
 
-	// sets the background image of the element
-	background_image(src) {
-		this._elem.style.backgroundImage = `url(${src})`;
-		return this;
-	}
-	// gets the background image of the element
-	get_background_image() {
-		return this._elem.style.backgroundImage;
-	}
-
 	// sets the given attribute of the element
 	attr(name, value) {
 		this._elem.setAttribute(name, value);
@@ -264,18 +254,18 @@ export class element {
 		return this;
 	}
 
-	// adds a class to the element
+	// adds a class to the element, if it already exists nothing happens
 	add_class(className) {
 		this._elem.classList.add(className);
 		return this;
 	}
-	// adds a list of classes to the element
+	// adds a list of classes to the element, duplicate classes are ignored
 	add_classes(classNames) {
 		for (let className of classNames)
 			this.add_class(className);
 		return this;
 	}
-	// removes a class from the element
+	// removes a class from the element, if it does not exist nothing happens
 	remove_class(className) {
 		this._elem.classList.remove(className);
 		return this;
@@ -284,6 +274,16 @@ export class element {
 	clear_classes() {
 		this._elem.className = '';
 		return this;
+	}
+	// removes the old class and adds the new class, if the old class does not exist it will be ignored, if the new class already exists it will be ignored
+	swap_class(oldClass, newClass) {
+		this.remove_class(oldClass);
+		this.add_class(newClass);
+		return this;
+	}
+	// checks if class exists in the element
+	has_class(className) {
+		return this._elem.classList.contains(className);
 	}
 
 	// gets the first element by query from _elem
@@ -315,12 +315,79 @@ export class element {
 			.map(elem => to_element(elem));
 	}
 
+	// clones the element
+	clone() {
+		return to_element(this._elem.cloneNode(true));
+	}
+
+	// triggers the click event on the element
+	click() {
+		this._elem.click();
+		return this;
+	}
+
+
 	// sets the style of the element
 	style(style) {
 		for (let key in style) {
 			this._elem.style[key] = style[key];
 		}
 		return this;
+	}
+
+	// sets the background image of the element
+	background_image(src) {
+		this._elem.style.backgroundImage = `url(${src})`;
+		return this;
+	}
+	// gets the background image of the element
+	get_background_image() {
+		return this._elem.style.backgroundImage;
+	}
+	// sets the background color of the element
+	background_color(color) {
+		this._elem.style.backgroundColor = color;
+		return this;
+	}
+	// gets the background color of the element
+	get_background_color() {
+		return this._elem.style.backgroundColor;
+	}
+
+	// sets the width of the element
+	width(width) {
+		this._elem.style.width = width;
+		return this;
+	}
+	// gets the client width of the element in px
+	get_client_width() {
+		return this._elem.clientWidth;
+	}
+	// gets the offset width of the element in px
+	get_offset_width() {
+		return this._elem.offsetWidth;
+	}
+	// gets the scroll width of the element in px
+	get_scroll_width() {
+		return this._elem.scrollWidth;
+	}
+
+	// sets the height of the element
+	height(height) {
+		this._elem.style.height = height;
+		return this;
+	}
+	// gets the client height of the element in px
+	get_client_height() {
+		return this._elem.clientHeight;
+	}
+	// gets the offset height of the element in px
+	get_offset_height() {
+		return this._elem.offsetHeight;
+	}
+	// gets the scroll height of the element in px
+	get_scroll_height() {
+		return this._elem.scrollHeight;
 	}
 }
 
